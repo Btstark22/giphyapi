@@ -17,38 +17,22 @@ function click() {
         btnEl.innerHTML = topics[i];
         btnDiv.appendChild(btnEl);
         console.log(btnEl);
-        document.getElementsByClassName(".old-btn")(function(node){
-            node.addEventListener("click", make(topics[i]))
-        })
-       
-    }
+            btnEl.addEventListener("click", function(){
+            const queryURL = "https://api.giphy.com/v1/gifs/search?api_key=NA7vL6oTxh01xHHphhmZIVNjvEOo8gWG&q=" + topics[i] + "&limit=10&offset=0&rating=PG-13&lang=en";
+            fetch(queryURL).then(function (response) {
+                return response.json()
+            })
+                .then(function (responseJson) {
+                    console.log(responseJson);
+                    for (let i = 0; i < responseJson.data.length; i++) {
+                        let newImage = document.createElement("img");
+                        newImage.setAttribute("src", responseJson.data[i].images.fixed_height.url)
+                        document.getElementById("giph-div").prepend(newImage)
+                    }
+                });
+            })
 
-      
-   }
-function make(titles) {
-    const queryURL = "https://api.giphy.com/v1/gifs/search?api_key=NA7vL6oTxh01xHHphhmZIVNjvEOo8gWG&q=" + titles + "&limit=10&offset=0&rating=PG-13&lang=en";
-    console.log(titles)
-        fetch(queryURL).then(function (response) {
-            return response.json()
-        })
-            .then(function (responseJson) {
-                console.log(responseJson);
-                for ( let i = 0; i < responseJson.data.length; i++) {
-                let newImage = document.createElement("img");
-                newImage.setAttribute("src", responseJson.data[i].images.fixed_height.url)
-                document.getElementById("giph-div").appendChild(newImage)
-                }
-            });
-        // .then(function (responseJson) {
-        //     console.log(responseJson)
-        //     //btnEl.setAttribute("data-giphys",responseJson.data);
-        //     for ( let i = 0; i < responseJson.data.length; i++) {
-        //         const newImage = document.createElement("img");
-        //     newImage.setAttribute("src", responseJson.data[i])
-        //    document.getElementById("giph-div").appendChild(newImage)
-        // }
-        // console.log(responseJson);
-        // });
+    }
 }
 
 document.getElementById("addBtn").addEventListener("click", click);

@@ -4,3 +4,19 @@ img {
     border-radius: 10px;
     padding: 5px;
 }
+#newbtn {
+    text-align: center;
+}
+.old-btn {
+    margin: 10px 10px 10px 10px;
+    border-radius: 10px;
+    border: 2px solid darkblue;
+    background: rgb(64, 173, 224);
+    color: white;
+    font-size: 20px;
+    
+}
+.old-btn:hover {
+    background-color: darkblue;
+    transition-duration: 0.4s;
+}

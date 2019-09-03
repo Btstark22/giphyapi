@@ -1,6 +1,5 @@
 let topics = [];
 const apikey = "NA7vL6oTxh01xHHphhmZIVNjvEOo8gWG";
-const newBtn = document.getElementById("new-btn");
 
 //on click run a function that makes a new button
 function click() {
@@ -13,7 +12,6 @@ function click() {
     for (let i = 0; i < topics.length; i++) {
         const btnEl = document.createElement("button");
         btnEl.classList.add("old-btn");
-        //btnEl.getAttribute.add(topics[i].trim().toLowerCase()) google search for this^ to 
         btnEl.innerHTML = topics[i];
         btnDiv.appendChild(btnEl);
         console.log(btnEl);
